@@ -1,6 +1,9 @@
 import { useEffect, useState } from "react";
+import {  useNavigate } from "react-router-dom";
 
 const HeroSection = () => {
+  const navigate = useNavigate();
+
   const shlokLines = [
     "कर्मण्येवाधिकारस्ते मा फलेषु कदाचन।",
     "मा कर्मफलहेतुर्भूर्मा ते सङ्गोऽस्त्वकर्मणि॥",
@@ -102,7 +105,9 @@ const HeroSection = () => {
             className="px-6 py-3 rounded-lg text-lg font-heading font-semibold 
             bg-primary text-background 
             hover:bg-accent transition-smooth shadow-soft"
-            >Start Now
+            onClick={() => navigate("/gita/1")}
+            >
+            Start Now
             </button>
 
           </div>

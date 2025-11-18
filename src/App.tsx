@@ -9,6 +9,11 @@ import Stories from "./pages/Stories";
 import Sanskrit from "./pages/Sanskrit";
 import NotFound from "./pages/NotFound";
 
+import GitaChapter1Page from "./pages/Gita";
+import SanskritCourse1 from "./pages/Sanskrit_Page";
+import StoryPage from "./pages/Narshimha";
+
+
 const queryClient = new QueryClient();
 
 const App = () => (
@@ -23,6 +28,10 @@ const App = () => (
           <Route path="/stories" element={<Stories />} />
           <Route path="/sanskrit" element={<Sanskrit />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
+          <Route path="/gita/:chapter" element={<GitaChapter1Page />} />
+          <Route path="/sanskrit/:Course" element={<SanskritCourse1 />} />
+          <Route path="/stories/:name" element={<StoryPage />} />
+
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>

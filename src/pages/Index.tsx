@@ -1,9 +1,9 @@
-import Navbar from "../components/Navbar";
 import HeroSection from "../components/HeroSection";
 import Footer from "../components/Footer";
 import SanskritSection from "../components/SanskritSection";
 import GitaSection from "../components/GitaSection";
 import StoriesSlider from "@/components/StoriesSlider";
+import Navbar from "../components/Navbar";
 
 const Index = () => { 
   return (

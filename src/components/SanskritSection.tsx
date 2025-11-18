@@ -1,6 +1,7 @@
 import React from "react";
-
+import { useNavigate } from "react-router-dom";
 const SanskritSection = () => {
+  const navigate = useNavigate();
   return (
     <div className="relative z-30 flex items-center justify-center min-h-screen p-6">
       {/* Card (image background) */}
@@ -41,7 +42,10 @@ const SanskritSection = () => {
               {/* Button area */}
               <div className="p-6">
                 <div className="flex justify-end">
-                  <button className="opacity-90 bg-white hover:bg-pink-900 hover:text-white text-sm font-bold py-4 px-8 rounded inline-flex items-center transition-colors">
+                  <button
+                    className="opacity-90 bg-white hover:bg-pink-900 hover:text-white text-sm font-bold py-4 px-8 rounded inline-flex items-center transition-colors"
+                    onClick={() => navigate("/sanskrit/1")}
+                  >
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       className="h-8 w-8 mr-2"
