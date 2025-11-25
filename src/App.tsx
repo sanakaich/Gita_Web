@@ -12,6 +12,7 @@ import NotFound from "./pages/NotFound";
 import GitaChapter1Page from "./pages/Gita";
 import SanskritCourse1 from "./pages/Sanskrit_Page";
 import StoryPage from "./pages/Narshimha";
+import ChapterPage from "./pages/ChapterPage";
 
 
 const queryClient = new QueryClient();
@@ -31,6 +32,7 @@ const App = () => (
           <Route path="/gita/:chapter" element={<GitaChapter1Page />} />
           <Route path="/sanskrit/:Course" element={<SanskritCourse1 />} />
           <Route path="/stories/:name" element={<StoryPage />} />
+          <Route path="/chapter/:number" element={<ChapterPage />} />
 
           <Route path="*" element={<NotFound />} />
         </Routes>

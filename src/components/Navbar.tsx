@@ -1,7 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 
-// Helper to create numbered menus (Chapter 1, Course 1, ...)
 const makeNumberedItems = (basePath: string, label: string, count: number) =>
   Array.from({ length: count }, (_, i) => ({
     label: `${label} ${i + 1}`,
@@ -16,6 +15,7 @@ const NAV_ITEMS = {
     { label: "Varaha", to: "/stories/varaha" },
     { label: "Krishna", to: "/stories/krishna" },
   ],
+  chapter: makeNumberedItems("/chapter", "Chapter", 7),
   blog: null,
 };
 
@@ -46,25 +46,20 @@ export default function Navbar() {
     const visible = openMenu === id;
 
     return (
-      // Wrapper div for positioning (doesn't animate)
       <div
         className="absolute top-full left-0 mt-2 w-56 z-50"
         onMouseEnter={() => setOpenMenu(id)}
         onMouseLeave={() => setOpenMenu(null)}
       >
-        {/* The "Manuscript" Container 
-           - animates max-height
-           - uses the custom 'ease-manuscript' defined in tailwind.config.ts
-           - overflow-y-auto when visible allows scrolling for long lists
-        */}
         <div
-          className={`
+          className={
+            `
             rounded-md border border-border bg-card shadow-soft
             transition-all duration-700 ease-manuscript
             ${visible ? "max-h-96 opacity-100 overflow-y-auto" : "max-h-0 opacity-0 overflow-hidden"}
-          `}
+          `
+          }
         >
-          {/* Inner container with padding ensures content doesn't jump during animation */}
           <div className="py-2">
             {items.map((it, idx) => (
               <Link
@@ -83,7 +78,7 @@ export default function Navbar() {
   }
 
   return (
-    <nav ref={navRef} className="w-full bg-black/30   shadow-soft top-0 left-0 z-40">
+    <nav ref={navRef} className="w-full bg-black/30 shadow-soft top-0 left-0 z-40">
       <div className="max-w-7xl mx-auto px-4 py-2 flex items-center justify-between">
         <div className="flex items-center gap-4">
           <img src="/logo.png" alt="Logo" className="w-11 h-11 object-contain" />
@@ -93,30 +88,46 @@ export default function Navbar() {
         <div className="flex items-center gap-6">
 
           {/* Gita */}
-          <div className="relative h-full flex items-center"
+          <div
+            className="relative h-full flex items-center"
             onMouseEnter={() => setOpenMenu("gita")}
-            onMouseLeave={() => setOpenMenu(null)}>
+            onMouseLeave={() => setOpenMenu(null)}
+          >
             <button className="text-2xl font-heading text-white hover:text-primary transition-smooth px-2 py-1 rounded-md">Gita</button>
             <Dropdown id="gita" items={NAV_ITEMS.gita} />
           </div>
 
           {/* Sanskrit */}
-          <div className="relative h-full flex items-center"
+          <div
+            className="relative h-full flex items-center"
             onMouseEnter={() => setOpenMenu("sanskrit")}
-            onMouseLeave={() => setOpenMenu(null)}>
+            onMouseLeave={() => setOpenMenu(null)}
+          >
             <button className="text-2xl font-heading text-white hover:text-primary transition-smooth px-2 py-1 rounded-md">Sanskrit</button>
             <Dropdown id="sanskrit" items={NAV_ITEMS.sanskrit} />
           </div>
 
           {/* Stories */}
-          <div className="relative h-full flex items-center"
+          <div
+            className="relative h-full flex items-center"
             onMouseEnter={() => setOpenMenu("stories")}
-            onMouseLeave={() => setOpenMenu(null)}>
+            onMouseLeave={() => setOpenMenu(null)}
+          >
             <button className="text-2xl font-heading text-white hover:text-primary transition-smooth px-2 py-1 rounded-md">Stories</button>
             <Dropdown id="stories" items={NAV_ITEMS.stories} />
           </div>
 
-          {/* Blog — simple link */}
+          {/* Chapter */}
+          <div
+            className="relative h-full flex items-center"
+            onMouseEnter={() => setOpenMenu("chapter")}
+            onMouseLeave={() => setOpenMenu(null)}
+          >
+            <button className="text-2xl font-heading text-white hover:text-primary transition-smooth px-2 py-1 rounded-md">Chapter</button>
+            <Dropdown id="chapter" items={NAV_ITEMS.chapter} />
+          </div>
+
+          {/* Blog */}
           <Link to="/blog" className="text-2xl font-heading text-white hover:text-primary transition-smooth px-2 py-1 rounded-md">Blog</Link>
 
         </div>
