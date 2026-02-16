@@ -8,7 +8,7 @@ const HeroSection = () => {
 
       {/* ================= Background Image ================= */}
       <img
-        src="public/hero-gita.png"   // put image inside /public
+        src="/public/hero-gita.png"   // put image inside /public
         alt="Krishna driving chariot with Arjuna"
         className="absolute inset-0 w-full h-full object-cover object-right"
       />
