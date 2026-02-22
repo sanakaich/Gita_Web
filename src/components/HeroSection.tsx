@@ -8,7 +8,7 @@ const HeroSection = () => {
 
       {/* ================= Background Image ================= */}
       <img
-        src="/public/hero-gita.png"   // put image inside /public
+        src="/hero-gita.png"   // put image inside /public
         alt="Krishna driving chariot with Arjuna"
         className="absolute inset-0 w-full h-full object-cover object-right"
       />
@@ -42,14 +42,14 @@ const HeroSection = () => {
 
           {/* Heading */}
           <h1 className="text-6xl font-semibold leading-tight text-[#1B2654]">
-            Discover the
+            Discover the Wisdom
             <br />
-            Wisdom of the Gita
+            of the Gita
           </h1>
 
           {/* Subtitle */}
           <p className="text-lg text-gray-700 leading-relaxed">
-            Explore Gita shloks, learn Sanskrit, enjoy ancient
+            Explore Gita shloks, learn Sanskrit, enjoy ancient<br />
             mythological stories, and meditate for inner peace.
           </p>
 
