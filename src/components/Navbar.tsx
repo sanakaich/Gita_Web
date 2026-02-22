@@ -216,7 +216,8 @@ export default function Navbar() {
 
           {/* Donate */}
           <NavLink
-            to="/donate"
+            to="/"
+            state={{ openDonate: true }}
             className="px-4 py-2 rounded-lg bg-[#F39237] text-white text-sm font-medium
             hover:opacity-95 hover:shadow-[0_0_12px_rgba(243,146,55,0.4)]
             transition duration-200"
