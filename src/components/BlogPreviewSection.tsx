@@ -1,5 +1,6 @@
 import { Link, useLocation } from "react-router-dom";
 import { useState, useEffect, useRef } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 
 /* TEMP DATA */
 const blogs = [
@@ -26,11 +27,9 @@ export default function BlogPreviewSection() {
   const location = useLocation();
   const sectionRef = useRef<HTMLElement | null>(null);
 
-  /*  AUTO OPEN + SCROLL LOGIC */
   useEffect(() => {
     if (location.state?.openDonate) {
       setShowQR(true);
-
       setTimeout(() => {
         sectionRef.current?.scrollIntoView({
           behavior: "smooth",
@@ -41,156 +40,175 @@ export default function BlogPreviewSection() {
   }, [location.state]);
 
   return (
-    <section
+    <motion.section
       ref={sectionRef}
       className="py-28"
-      style={{
-        marginTop: "30px",
-        paddingTop: "100px",
-        paddingBottom: "10px",
-      }}
+      initial={{ opacity: 0, y: 40 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.8 }}
     >
       <div className="max-w-[1500px] mx-auto px-10">
 
         {/* Divider */}
-        <div
-          className="h-[2px] w-full bg-gradient-to-r from-transparent via-[#C9C1B5] to-transparent opacity-100 mb-16"
-          style={{ marginBottom: "120px" }}
+        <motion.div
+          className="h-[2px] w-full bg-gradient-to-r from-transparent via-[#C9C1B5] to-transparent mb-16"
+          initial={{ scaleX: 0 }}
+          whileInView={{ scaleX: 1 }}
+          transition={{ duration: 0.8 }}
         />
 
         {/* Header */}
-        <h2 className="text-4xl font-serif font-semibold text-[#1B2654] mb-12">
+        <motion.h2
+          className="text-4xl font-serif font-semibold text-[#1B2654] mb-12"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.2 }}
+        >
           Recent Blogs
-        </h2>
+        </motion.h2>
 
         <div className="grid grid-cols-3 gap-10">
 
           {/* LEFT : BLOG LIST */}
-          <div className="col-span-2 space-y-6">
+          <motion.div
+            className="col-span-2 space-y-6"
+            initial="hidden"
+            whileInView="visible"
+            variants={{
+              hidden: {},
+              visible: { transition: { staggerChildren: 0.2 } },
+            }}
+          >
             {blogs.map((blog) => (
-              <Link
+              <motion.div
                 key={blog.id}
-                to={`/blog/${blog.id}`}
-                className="relative flex bg-[#F6EFE6] rounded-2xl overflow-hidden shadow-md h-[169px]"
+                variants={{
+                  hidden: { opacity: 0, y: 40 },
+                  visible: { opacity: 1, y: 0 },
+                }}
+                transition={{ duration: 0.6 }}
+                whileHover={{ y: -6 }}
               >
-                <div
-                  className="absolute inset-0 pointer-events-none opacity-30"
-                  style={{
-                    backgroundImage: "url('/card-cloud.png')",
-                    backgroundRepeat: "no-repeat",
-                    backgroundPosition: "right bottom",
-                    backgroundSize: "95%",
-                    maskImage:
-                      "linear-gradient(to left, black 45%, transparent 90%)",
-                    WebkitMaskImage:
-                      "linear-gradient(to left, black 45%, transparent 90%)",
-                  }}
-                />
+                <Link
+                  to={`/blog/${blog.id}`}
+                  className="relative flex bg-[#F6EFE6] rounded-2xl overflow-hidden shadow-md h-[169px]"
+                >
+                  {/* Image Zoom */}
+                  <motion.div
+                    className="relative z-10 w-44 self-stretch overflow-hidden"
+                    whileHover={{ scale: 1.05 }}
+                  >
+                    <motion.img
+                      src={blog.image}
+                      alt={blog.title}
+                      className="w-full h-full object-cover"
+                      whileHover={{ scale: 1.1 }}
+                      transition={{ duration: 0.4 }}
+                    />
+                  </motion.div>
 
-                <div className="relative z-10 w-44 self-stretch overflow-hidden">
-                  <img
-                    src={blog.image}
-                    alt={blog.title}
-                    className="w-full h-full object-cover"
-                  />
-                </div>
+                  <div className="py-4 px-5 flex flex-col relative z-10">
+                    <h3 className="text-lg font-serif font-semibold text-[#1B2654]">
+                      {blog.title}
+                    </h3>
 
-                <div className="py-4 px-5 flex flex-col justify-start relative z-10">
-                  <h3 className="text-lg font-serif font-semibold text-[#1B2654] leading-snug">
-                    {blog.title}
-                  </h3>
+                    <p className="text-xs text-gray-500 mt-1">{blog.date}</p>
 
-                  <p className="text-xs text-gray-500 mt-1">{blog.date}</p>
+                    <p className="text-gray-600 text-sm mt-2 max-w-xl">
+                      {blog.description}
+                    </p>
 
-                  <p className="text-gray-600 text-sm mt-2 leading-relaxed max-w-xl">
-                    {blog.description}
-                  </p>
-
-                  <span className="text-[#F39237] text-sm mt-2 font-medium">
-                    Read More →
-                  </span>
-                </div>
-              </Link>
+                    <motion.span
+                      className="text-[#F39237] text-sm mt-2 font-medium"
+                      whileHover={{ x: 5 }}
+                    >
+                      Read More →
+                    </motion.span>
+                  </div>
+                </Link>
+              </motion.div>
             ))}
-          </div>
+          </motion.div>
 
           {/* RIGHT : DONATE CARD */}
-          <div className="col-span-1">
-            <div className="relative bg-[#F6EFE6] rounded-2xl shadow-md h-[350px] p-8 overflow-hidden">
-
-              <div
-                className="absolute inset-0 pointer-events-none opacity-30"
-                style={{
-                  backgroundImage: "url('/card-cloud.png')",
-                  backgroundRepeat: "no-repeat",
-                  backgroundPosition: "right bottom",
-                  backgroundSize: "95%",
-                  maskImage:
-                    "linear-gradient(to left, black 45%, transparent 90%)",
-                  WebkitMaskImage:
-                    "linear-gradient(to left, black 45%, transparent 90%)",
-                }}
-              />
-
+          <motion.div
+            className="col-span-1"
+            initial={{ opacity: 0, x: 40 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ delay: 0.3 }}
+          >
+            <motion.div
+              whileHover={{ y: -8 }}
+              className="relative bg-[#F6EFE6] rounded-2xl shadow-md h-[350px] p-8 overflow-hidden"
+            >
               <div className="relative z-10 w-full h-full flex items-center justify-center text-center">
 
-                {/* Default Content */}
-                <div
-                  className={`absolute w-full transition-all duration-500 ease-in-out ${
-                    showQR
-                      ? "opacity-0 scale-95 pointer-events-none"
-                      : "opacity-100 scale-100"
-                  }`}
-                >
-                  <h3 className="text-3xl font-serif font-semibold text-[#1B2654] mb-6">
-                    Support Gitaarth
-                  </h3>
+                <AnimatePresence mode="wait">
 
-                  <p className="text-gray-700 leading-relaxed mb-10 text-[15px]">
-                    Help us preserve and share the timeless wisdom of the
-                    Bhagavad Gita and Sanskrit learning for everyone.
-                  </p>
+                  {!showQR && (
+                    <motion.div
+                      key="default"
+                      initial={{ opacity: 0, scale: 0.95 }}
+                      animate={{ opacity: 1, scale: 1 }}
+                      exit={{ opacity: 0, scale: 0.95 }}
+                      transition={{ duration: 0.4 }}
+                    >
+                      <h3 className="text-3xl font-serif font-semibold text-[#1B2654] mb-6">
+                        Support Gitaarth
+                      </h3>
 
-                  <button
-                    onClick={() => setShowQR(true)}
-                    className="bg-[#F39237] text-white px-10 py-4 rounded-xl text-lg font-medium shadow-sm hover:scale-105 hover:shadow-lg transition-all duration-300"
-                  >
-                    Donate Now
-                  </button>
-                </div>
+                      <p className="text-gray-700 mb-10 text-[15px]">
+                        Help us preserve and share the timeless wisdom of the
+                        Bhagavad Gita.
+                      </p>
 
-                {/* QR Content */}
-                <div
-                  className={`absolute w-full transition-all duration-500 ease-in-out ${
-                    showQR
-                      ? "opacity-100 scale-100"
-                      : "opacity-0 scale-95 pointer-events-none"
-                  }`}
-                >
-                  <h3 className="text-2xl font-serif font-semibold text-[#1B2654] mb-6">
-                    Scan to Donate
-                  </h3>
+                      <motion.button
+                        onClick={() => setShowQR(true)}
+                        whileHover={{ scale: 1.08 }}
+                        whileTap={{ scale: 0.95 }}
+                        className="bg-[#F39237] text-white px-10 py-4 rounded-xl text-lg font-medium shadow-sm"
+                      >
+                        Donate Now
+                      </motion.button>
+                    </motion.div>
+                  )}
 
-                  <img
-                    src="/QR.jpg"
-                    alt="Donation QR"
-                    className="w-56 mx-auto rounded-xl shadow-lg"
-                  />
+                  {showQR && (
+                    <motion.div
+                      key="qr"
+                      initial={{ opacity: 0, scale: 0.95 }}
+                      animate={{ opacity: 1, scale: 1 }}
+                      exit={{ opacity: 0, scale: 0.95 }}
+                      transition={{ duration: 0.4 }}
+                    >
+                      <h3 className="text-2xl font-serif font-semibold text-[#1B2654] mb-6">
+                        Scan to Donate
+                      </h3>
 
-                  <button
-                    onClick={() => setShowQR(false)}
-                    className="mt-6 text-sm underline text-[#1B2654] hover:text-[#F39237] transition"
-                  >
-                    Go Back
-                  </button>
-                </div>
+                      <motion.img
+                        src="/QR.jpg"
+                        alt="Donation QR"
+                        className="w-56 mx-auto rounded-xl shadow-lg"
+                        whileHover={{ scale: 1.05 }}
+                      />
 
+                      <button
+                        onClick={() => setShowQR(false)}
+                        className="mt-6 text-sm underline text-[#1B2654] hover:text-[#F39237]"
+                      >
+                        Go Back
+                      </button>
+                    </motion.div>
+                  )}
+
+                </AnimatePresence>
               </div>
-            </div>
-          </div>
+            </motion.div>
+          </motion.div>
 
         </div>
       </div>
-    </section>
+    </motion.section>
   );
 }
