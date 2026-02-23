@@ -27,6 +27,7 @@ export default function DailyShlokSection() {
         min-h-[520px]
         pb-40
       "
+            style={{ paddingBottom: 150 }}
         >
             {/* CLOUD BACKGROUND */}
             <img

@@ -43,6 +43,7 @@ export default function BlogPreviewSection() {
     <motion.section
       ref={sectionRef}
       className="py-28"
+      style={{ marginTop: 0, paddingTop: 40, paddingBottom: 90 }}
       initial={{ opacity: 0, y: 40 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}

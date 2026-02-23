@@ -136,8 +136,8 @@ function ClockHands({ remaining }) {
   };
 
   const hour = handStyle(hourDeg, 55, 5, "#1B2654", false);
-  const min  = handStyle(minDeg, 78, 3.5, "#F39237", true);
-  const sec  = handStyle(secDeg, 88, 1.5, "#e05a00", true);
+  const min = handStyle(minDeg, 78, 3.5, "#F39237", true);
+  const sec = handStyle(secDeg, 88, 1.5, "#e05a00", true);
 
   // Counterweight (tail) for second hand
   const secTailRad = (secDeg + 180) * (Math.PI / 180);
@@ -148,22 +148,22 @@ function ClockHands({ remaining }) {
     <>
       {/* Hour hand */}
       <line x1={cx} y1={cy} x2={hour.x2} y2={hour.y2}
-        stroke={hour.stroke} strokeWidth={hour.strokeWidth} strokeLinecap="round"/>
+        stroke={hour.stroke} strokeWidth={hour.strokeWidth} strokeLinecap="round" />
       {/* Minute hand */}
       <line x1={cx} y1={cy} x2={min.x2} y2={min.y2}
         stroke={min.stroke} strokeWidth={min.strokeWidth} strokeLinecap="round"
-        style={{ filter: min.filter }}/>
+        style={{ filter: min.filter }} />
       {/* Second hand */}
       <line x1={cx} y1={cy} x2={sec.x2} y2={sec.y2}
         stroke={sec.stroke} strokeWidth={sec.strokeWidth} strokeLinecap="round"
-        style={{ filter: sec.filter }}/>
+        style={{ filter: sec.filter }} />
       {/* Tail */}
       <line x1={cx} y1={cy} x2={secTailX} y2={secTailY}
-        stroke="#e05a00" strokeWidth="1.5" strokeLinecap="round"/>
+        stroke="#e05a00" strokeWidth="1.5" strokeLinecap="round" />
       {/* Center jewel */}
-      <circle cx={cx} cy={cy} r="7" fill="#F39237"/>
-      <circle cx={cx} cy={cy} r="4" fill="#fff8ee"/>
-      <circle cx={cx} cy={cy} r="1.5" fill="#F39237"/>
+      <circle cx={cx} cy={cy} r="7" fill="#F39237" />
+      <circle cx={cx} cy={cy} r="4" fill="#fff8ee" />
+      <circle cx={cx} cy={cy} r="1.5" fill="#F39237" />
     </>
   );
 }
@@ -229,7 +229,7 @@ export default function FeaturesSection() {
   };
 
   return (
-    <section className="relative py-10">
+    <section className="relative py-10" style={{ marginTop: 0 }}>
       <div className={`max-w-[1500px] mx-auto px-4 transition-all duration-300 ${open ? "blur-sm pointer-events-none" : ""}`}>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
           {features.map((item, index) => (
@@ -319,48 +319,48 @@ export default function FeaturesSection() {
                     position: "absolute", inset: 0, borderRadius: "50%",
                     boxShadow: "0 0 48px rgba(243,146,55,0.2), 0 0 0 1px rgba(243,146,55,0.15)",
                     pointerEvents: "none"
-                  }}/>
+                  }} />
 
                   <svg width="320" height="320" viewBox="0 0 320 320">
                     <defs>
                       {/* Warm cream dial gradient */}
                       <radialGradient id="dialGrad" cx="42%" cy="35%">
-                        <stop offset="0%" stopColor="#fffbf4"/>
-                        <stop offset="55%" stopColor="#f8f0e0"/>
-                        <stop offset="100%" stopColor="#ede0c8"/>
+                        <stop offset="0%" stopColor="#fffbf4" />
+                        <stop offset="55%" stopColor="#f8f0e0" />
+                        <stop offset="100%" stopColor="#ede0c8" />
                       </radialGradient>
 
                       {/* Saffron arc gradient */}
                       <linearGradient id="arcGrad" x1="0%" y1="0%" x2="100%" y2="0%">
-                        <stop offset="0%" stopColor="#e05a00"/>
-                        <stop offset="50%" stopColor="#F39237"/>
-                        <stop offset="100%" stopColor="#f7c26b"/>
+                        <stop offset="0%" stopColor="#e05a00" />
+                        <stop offset="50%" stopColor="#F39237" />
+                        <stop offset="100%" stopColor="#f7c26b" />
                       </linearGradient>
 
                       {/* Case shadow */}
                       <filter id="caseShadow">
-                        <feDropShadow dx="0" dy="6" stdDeviation="12" floodColor="#1B2654" floodOpacity="0.25"/>
+                        <feDropShadow dx="0" dy="6" stdDeviation="12" floodColor="#1B2654" floodOpacity="0.25" />
                       </filter>
 
                       {/* Hand glow */}
                       <filter id="glow">
-                        <feGaussianBlur stdDeviation="2" result="blur"/>
-                        <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+                        <feGaussianBlur stdDeviation="2" result="blur" />
+                        <feMerge><feMergeNode in="blur" /><feMergeNode in="SourceGraphic" /></feMerge>
                       </filter>
                     </defs>
 
                     {/* ── Outer watch case ── */}
-                    <circle cx="160" cy="160" r="155" fill="#1B2654" filter="url(#caseShadow)"/>
+                    <circle cx="160" cy="160" r="155" fill="#1B2654" filter="url(#caseShadow)" />
 
                     {/* ── Navy bezel with subtle ring ── */}
-                    <circle cx="160" cy="160" r="155" fill="url(#navyBezel)" stroke="#2d3d7a" strokeWidth="2"/>
+                    <circle cx="160" cy="160" r="155" fill="url(#navyBezel)" stroke="#2d3d7a" strokeWidth="2" />
 
                     {/* ── Saffron bezel accent ring ── */}
-                    <circle cx="160" cy="160" r="148" fill="none" stroke="#F39237" strokeWidth="3" opacity="0.7"/>
-                    <circle cx="160" cy="160" r="143" fill="none" stroke="#f7c26b" strokeWidth="0.8" opacity="0.4"/>
+                    <circle cx="160" cy="160" r="148" fill="none" stroke="#F39237" strokeWidth="3" opacity="0.7" />
+                    <circle cx="160" cy="160" r="143" fill="none" stroke="#f7c26b" strokeWidth="0.8" opacity="0.4" />
 
                     {/* ── Mandala petals on bezel ── */}
-                    <MandalaPetals/>
+                    <MandalaPetals />
 
                     {/* ── Timer progress arc (outermost) ── */}
                     <circle
@@ -382,17 +382,17 @@ export default function FeaturesSection() {
                     />
 
                     {/* ── Cream dial face ── */}
-                    <circle cx="160" cy="160" r="118" fill="url(#dialGrad)"/>
+                    <circle cx="160" cy="160" r="118" fill="url(#dialGrad)" />
 
                     {/* ── Subtle guilloché ring ── */}
                     <circle cx="160" cy="160" r="118" fill="none" stroke="rgba(243,146,55,0.08)" strokeWidth="24"
-                      strokeDasharray="3 6"/>
+                      strokeDasharray="3 6" />
 
                     {/* ── Tick marks ── */}
-                    <DialTicks/>
+                    <DialTicks />
 
                     {/* ── Hour numbers ── */}
-                    <DialNumbers/>
+                    <DialNumbers />
 
                     {/* ── Brand name on dial ── */}
                     <text x="160" y="126" textAnchor="middle"
@@ -426,7 +426,7 @@ export default function FeaturesSection() {
                     </text>
 
                     {/* ── Clock hands ── */}
-                    <ClockHands remaining={remaining}/>
+                    <ClockHands remaining={remaining} />
                   </svg>
                 </div>
               </div>
