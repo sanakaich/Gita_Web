@@ -1,26 +1,7 @@
+import { recentBlogs } from "@/data/blogs";
 import { Link, useLocation } from "react-router-dom";
 import { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-
-/* TEMP DATA */
-const blogs = [
-  {
-    id: 1,
-    title: "Finding Inner Peace through the Gita",
-    date: "April 5, 2022",
-    description:
-      "Discover how the teachings of the Gita can help bring inner peace and clarity.",
-    image: "/blog-1.png",
-  },
-  {
-    id: 2,
-    title: "Lessons from the Life of Arjuna",
-    date: "March 29, 2022",
-    description:
-      "Explore the courage, doubts and wisdom of Arjuna on the battlefield of life.",
-    image: "/blog-2.png",
-  },
-];
 
 export default function BlogPreviewSection() {
   const [showQR, setShowQR] = useState(false);
@@ -81,7 +62,7 @@ export default function BlogPreviewSection() {
               visible: { transition: { staggerChildren: 0.2 } },
             }}
           >
-            {blogs.map((blog) => (
+            {recentBlogs.map((blog) => (
               <motion.div
                 key={blog.id}
                 variants={{
@@ -92,7 +73,7 @@ export default function BlogPreviewSection() {
                 whileHover={{ y: -6 }}
               >
                 <Link
-                  to={`/blog/${blog.id}`}
+                  to={`/blog/${blog.slug}`}
                   className="relative flex bg-[#F6EFE6] rounded-2xl overflow-hidden shadow-md h-[169px]"
                 >
                   {/* Image Zoom */}
@@ -101,7 +82,7 @@ export default function BlogPreviewSection() {
                     whileHover={{ scale: 1.05 }}
                   >
                     <motion.img
-                      src={blog.image}
+                      src={blog.coverImage}
                       alt={blog.title}
                       className="w-full h-full object-cover"
                       whileHover={{ scale: 1.1 }}
@@ -117,7 +98,7 @@ export default function BlogPreviewSection() {
                     <p className="text-xs text-gray-500 mt-1">{blog.date}</p>
 
                     <p className="text-gray-600 text-sm mt-2 max-w-xl">
-                      {blog.description}
+                      {blog.excerpt}
                     </p>
 
                     <motion.span

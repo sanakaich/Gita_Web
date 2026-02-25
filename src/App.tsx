@@ -6,7 +6,10 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 import Index from "./pages/Index";
 import GitaChapter1Page from "./pages/Gita";
+import BlogPage from "./pages/Blog";
+import BlogPostPage from "./pages/BlogPost";
 import NotFound from "./pages/NotFound";
+import ScrollToTop from "./components/ScrollToTop";
 
 const queryClient = new QueryClient();
 
@@ -17,6 +20,7 @@ const App = () => (
       <Sonner />
 
       <BrowserRouter>
+        <ScrollToTop />
         <Routes>
 
           {/* Homepage */}
@@ -25,6 +29,10 @@ const App = () => (
           {/* Gita Chapter 1 — accessible via both /gita and /gita/chapter/1 */}
           <Route path="/gita" element={<GitaChapter1Page />} />
           <Route path="/gita/chapter/1" element={<GitaChapter1Page />} />
+
+          {/* Blog */}
+          <Route path="/blog" element={<BlogPage />} />
+          <Route path="/blog/:slug" element={<BlogPostPage />} />
 
           {/* Catch All */}
           <Route path="*" element={<NotFound />} />
