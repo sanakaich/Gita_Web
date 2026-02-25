@@ -56,6 +56,7 @@ export default function Navbar() {
         {/* Logo */}
         <Link
           to="/"
+          onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
           className="flex items-center gap-3 text-2xl font-semibold text-[#1B2654]"
         >
           <img src="/logo.png" alt="Gitaarth" className="w-10 h-10" />

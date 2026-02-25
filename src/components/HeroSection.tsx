@@ -55,7 +55,7 @@ const HeroSection = () => {
 
           {/* CTA */}
           <button
-            onClick={() => navigate("/gita")}
+            onClick={() => navigate("/gita/chapter/1")}
             className="
               px-8 py-4
               rounded-lg

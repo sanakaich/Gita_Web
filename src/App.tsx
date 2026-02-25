@@ -22,7 +22,8 @@ const App = () => (
           {/* Homepage */}
           <Route path="/" element={<Index />} />
 
-          {/* Gita Chapter 1 */}
+          {/* Gita Chapter 1 — accessible via both /gita and /gita/chapter/1 */}
+          <Route path="/gita" element={<GitaChapter1Page />} />
           <Route path="/gita/chapter/1" element={<GitaChapter1Page />} />
 
           {/* Catch All */}

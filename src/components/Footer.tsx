@@ -6,7 +6,7 @@ const Footer = () => {
     <footer className="bg-gray-900 text-white pt-20 pb-10 border-t border-gray-800">
       <div className="max-w-[1440px] mx-auto px-6 md:px-12">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
-          
+
           {/* Brand */}
           <div className="space-y-6">
             <div className="flex items-center gap-2">

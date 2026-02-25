@@ -1,5 +1,7 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import Navbar from "@/components/Navbar";
+import Footer from "@/components/Footer";
 import rawChapter1 from "@/data/chapter1.json";
 
 type Verse = {
@@ -12,6 +14,7 @@ type Verse = {
 const chapter1 = rawChapter1 as Verse[];
 
 export default function GitaChapter1Page() {
+  const navigate = useNavigate();
   const speak = (text: string) => {
     if (!("speechSynthesis" in window)) return;
     const utterance = new SpeechSynthesisUtterance(text);
@@ -27,8 +30,8 @@ export default function GitaChapter1Page() {
       className="min-h-screen text-[#1B2654]"
       style={{
         background:
-          "radial-gradient(ellipse 80% 40% at 50% -10%, rgba(243,146,55,0.12) 0%, transparent 70%), " +
-          "linear-gradient(160deg, #F5EFE6 0%, #FBF8F3 40%, #EEF0F8 100%)",
+          "radial-gradient(ellipse 70% 35% at 50% 0%, rgba(243,146,55,0.13) 0%, transparent 65%), " +
+          "linear-gradient(170deg, #F0E9DE 0%, #F8F4EE 45%, #ECEEF6 100%)",
       }}
     >
       <Navbar />
@@ -38,10 +41,10 @@ export default function GitaChapter1Page() {
         <p className="text-sm uppercase tracking-[0.25em] text-[#F39237] font-semibold mb-3">
           Bhagavad Gita
         </p>
-        <h1 className="text-5xl md:text-6xl font-bold tracking-tight leading-tight">
+        <h1 className="text-4xl md:text-5xl font-bold tracking-tight leading-tight">
           Chapter&nbsp;1
         </h1>
-        <p className="mt-4 text-xl text-[#1B2654]/60 font-light">
+        <p className="mt-3 text-base text-[#1B2654]/60 font-light">
           Arjuna Viṣāda Yoga — The Yoga of Arjuna's Dejection
         </p>
         <div className="mt-8 flex items-center justify-center gap-4">
@@ -52,14 +55,15 @@ export default function GitaChapter1Page() {
       </section>
 
       {/* ── Verse Cards ── */}
-      <section className="max-w-6xl mx-auto px-6 md:px-12 pb-28 grid grid-cols-1 md:grid-cols-2 gap-10">
+      <section className="max-w-7xl mx-auto px-6 md:px-12 pb-28 grid grid-cols-1 md:grid-cols-2 gap-10">
         {chapter1.map((verse) => (
           <article
             key={verse["Serial Number"]}
-            className="relative bg-white border border-[#EDE8E0] rounded-3xl p-8 md:p-10
-                       shadow-[0_8px_32px_-4px_rgba(27,38,84,0.13),0_2px_8px_rgba(27,38,84,0.07),0_0_0_1px_rgba(27,38,84,0.03)]
-                       hover:shadow-[0_20px_56px_-8px_rgba(27,38,84,0.20),0_4px_16px_rgba(243,146,55,0.12),0_0_0_1px_rgba(243,146,55,0.08)]
-                       transition-all duration-300 hover:-translate-y-1.5"
+            id={`verse-${verse["Serial Number"]}`}
+            className="relative bg-white border border-[#EDE8E0] rounded-3xl p-10 md:p-12
+                       shadow-[0_8px_32px_-4px_rgba(27,38,84,0.10),0_2px_8px_rgba(27,38,84,0.06)]
+                       hover:shadow-[0_20px_56px_-8px_rgba(27,38,84,0.18),0_4px_16px_rgba(243,146,55,0.15)]
+                       transition-all duration-300 hover:-translate-y-2"
           >
             {/* Verse badge */}
             <div className="inline-flex items-center gap-2 bg-[#FFF4E8] border border-[#F39237]/30 text-[#F39237]
@@ -70,19 +74,23 @@ export default function GitaChapter1Page() {
             </div>
 
             {/* Sanskrit */}
-            <h2 className="text-2xl md:text-3xl font-semibold leading-relaxed text-[#1B2654] mb-5">
+            <h2
+              className="text-xl md:text-2xl font-semibold leading-[1.8] text-[#1B2654] mb-5"
+              style={{ fontFamily: "'Noto Serif Devanagari', serif" }}
+            >
               {verse["Sanskrit (Devanagari)"]}
             </h2>
 
             {/* TTS Button */}
             <button
               onClick={() => speak(verse["Sanskrit (Devanagari)"])}
-              className="group inline-flex items-center gap-2 text-sm font-medium px-5 py-2.5 rounded-full
-                         bg-[#1B2654] text-white
-                         shadow-[0_4px_14px_rgba(27,38,84,0.25)]
-                         hover:bg-[#F39237]
-                         hover:shadow-[0_4px_18px_rgba(243,146,55,0.45)]
-                         active:scale-95 transition-all duration-250"
+              className="inline-flex items-center gap-2.5 text-sm font-semibold px-6 py-3 rounded-full
+                         bg-[#F39237] text-white
+                         shadow-[0_4px_16px_rgba(243,146,55,0.40)]
+                         hover:bg-[#e07d1a]
+                         hover:shadow-[0_6px_24px_rgba(243,146,55,0.55)]
+                         hover:scale-105
+                         active:scale-95 transition-all duration-200"
             >
               <span className="text-base">🔊</span>
               <span>Listen in Sanskrit</span>
@@ -96,7 +104,7 @@ export default function GitaChapter1Page() {
               <p className="text-[10px] uppercase tracking-widest text-[#1B2654]/40 font-semibold mb-2">
                 Translation
               </p>
-              <p className="text-[#1B2654]/85 text-lg leading-relaxed">
+              <p className="text-[#1B2654]/90 text-base leading-relaxed">
                 {verse["English Translation"]}
               </p>
             </div>
@@ -118,6 +126,20 @@ export default function GitaChapter1Page() {
           </article>
         ))}
       </section>
+      <Footer />
+
+      {/* ── Next Chapter floating button ── */}
+      <button
+        onClick={() => navigate("/gita/chapter/2")}
+        className="fixed bottom-8 right-8 z-50
+                   inline-flex items-center gap-2 px-5 py-3 rounded-full
+                   bg-[#F39237] text-white text-sm font-semibold
+                   shadow-[0_6px_24px_rgba(243,146,55,0.50)]
+                   hover:bg-[#e07d1a] hover:shadow-[0_8px_30px_rgba(243,146,55,0.65)]
+                   hover:scale-105 active:scale-95 transition-all duration-200"
+      >
+        Chapter 2 <span className="text-base">→</span>
+      </button>
     </div>
   );
 }
