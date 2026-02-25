@@ -51,8 +51,8 @@ export default function Navbar() {
       ref={navRef}
       className="sticky top-0 z-50 backdrop-blur-xl bg-[#FBF8F3]/80 border-b border-[#E8E1D8]"
     >
-      <nav className="max-w-[1440px] mx-auto px-6 md:px-10 h-20 flex items-center justify-between">
-        
+      <nav className="max-w-[1440px] mx-auto px-6 md:px-10 h-16 flex items-center justify-between">
+
         {/* Logo */}
         <Link
           to="/"
