@@ -10,6 +10,7 @@ import BlogPage from "./pages/Blog";
 import BlogPostPage from "./pages/BlogPost";
 import NotFound from "./pages/NotFound";
 import ScrollToTop from "./components/ScrollToTop";
+import ChatBot from "./components/ChatBot";
 
 const queryClient = new QueryClient();
 
@@ -21,6 +22,7 @@ const App = () => (
 
       <BrowserRouter>
         <ScrollToTop />
+        <ChatBot />
         <Routes>
 
           {/* Homepage */}

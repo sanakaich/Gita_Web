@@ -216,7 +216,7 @@ export default function FeaturesSection() {
     a.volume = 0; prevAudio.current = a;
     a.play().catch(() => { });
     doFadeIn(a, 800, prevFadeRef);
-    prevTO.current = setTimeout(() => stopPreview(), 10000); // 5-second preview
+    prevTO.current = setTimeout(() => stopPreview(), 10000); // 10-second preview
   };
 
   const stopPreview = () => {
