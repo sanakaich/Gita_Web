@@ -320,27 +320,45 @@ export default function FeaturesSection() {
 
       {/* ── Feature cards ── */}
       <div className={`max-w-[1500px] mx-auto px-4 transition-all duration-500 ${open ? "blur-sm pointer-events-none scale-[0.99]" : ""}`}>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <motion.div
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6"
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.1 }}
+          variants={{
+            hidden: {},
+            visible: { transition: { staggerChildren: 0.1 } },
+          }}
+        >
           {features.map((item, i) => (
-            <motion.div key={i} whileHover={{ y: -8, scale: 1.02 }} className="bg-[#F6EFE6] rounded-2xl p-6 flex flex-col">
+            <motion.div
+              key={i}
+              variants={{
+                hidden: { opacity: 0, y: 30 },
+                visible: { opacity: 1, y: 0, transition: { duration: 0.55, ease: [0.22, 1, 0.36, 1] } },
+              }}
+              whileHover={{ y: -8, scale: 1.02, transition: { duration: 0.2 } }}
+              className="bg-[#F6EFE6] rounded-2xl p-6 flex flex-col"
+            >
               <div className="overflow-hidden rounded-xl mb-5">
-                <img src={item.image} alt={item.title} className="w-full h-40 object-cover transition-transform duration-500 ease-out hover:scale-110" />
+                <img src={item.image} alt={item.title} className="w-full h-40 object-cover transition-transform duration-500 ease-out group-hover:scale-105" />
               </div>
               <h3 className="text-xl font-serif font-semibold text-[#1B2654] mb-3">{item.title}</h3>
               <p className="text-gray-600 text-sm flex-grow">{item.description}</p>
               {item.type === "meditation" ? (
-                <button onClick={openModal} className="mt-5 px-4 py-2 rounded-lg border border-[#F39237] text-[#F39237] hover:bg-[#F39237] hover:text-white transition">
+                <button onClick={openModal} className="mt-5 px-4 py-2 rounded-lg border border-[#F39237] text-[#F39237] hover:bg-[#F39237] hover:text-white transition-all duration-200">
                   {item.button}
                 </button>
               ) : (
-                <Link to={item.to!} className="mt-5 px-4 py-2 rounded-lg border border-[#F39237] text-[#F39237] hover:bg-[#F39237] hover:text-white transition text-center">
+                <Link to={item.to!} className="mt-5 px-4 py-2 rounded-lg border border-[#F39237] text-[#F39237] hover:bg-[#F39237] hover:text-white transition-all duration-200 text-center">
                   {item.button}
                 </Link>
               )}
             </motion.div>
           ))}
-        </div>
+        </motion.div>
       </div>
+
 
       {/* ══════════════════ MODAL ══════════════════ */}
       <AnimatePresence>

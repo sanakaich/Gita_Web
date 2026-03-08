@@ -5,7 +5,10 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 import Index from "./pages/Index";
-import GitaChapter1Page from "./pages/Gita";
+import GitaRedirect from "./pages/Gita";
+import GitaChapterPage from "./pages/GitaChapterPage";
+import SanskritLanding from "./pages/SanskritLanding";
+import SanskritModulePage from "./pages/SanskritModulePage";
 import BlogPage from "./pages/Blog";
 import BlogPostPage from "./pages/BlogPost";
 import NotFound from "./pages/NotFound";
@@ -28,9 +31,13 @@ const App = () => (
           {/* Homepage */}
           <Route path="/" element={<Index />} />
 
-          {/* Gita Chapter 1 — accessible via both /gita and /gita/chapter/1 */}
-          <Route path="/gita" element={<GitaChapter1Page />} />
-          <Route path="/gita/chapter/1" element={<GitaChapter1Page />} />
+          {/* Gita — /gita redirects to chapter 1; /gita/chapter/:id is the dynamic page */}
+          <Route path="/gita" element={<GitaRedirect />} />
+          <Route path="/gita/chapter/:id" element={<GitaChapterPage />} />
+
+          {/* Sanskrit Learning */}
+          <Route path="/sanskrit" element={<SanskritLanding />} />
+          <Route path="/sanskrit/module/:id" element={<SanskritModulePage />} />
 
           {/* Blog */}
           <Route path="/blog" element={<BlogPage />} />

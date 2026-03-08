@@ -1,0 +1,102 @@
+[
+    {
+        "question": "How do you say 'I am a student'?",
+        "options": [
+            "मम नाम विद्यार्थी अस्ति",
+            "अहम् विद्यार्थी अस्मि",
+            "एषः विद्यार्थी",
+            "अहम् विद्यार्थी पठामि"
+        ],
+        "correct": 1
+    },
+    {
+        "question": "How do you say 'My name is Sita'?",
+        "options": [
+            "मम नाम सीता अस्ति",
+            "अहम् सीता अस्मि",
+            "एषा सीता",
+            "सीता पठामि"
+        ],
+        "correct": 0
+    },
+    {
+        "question": "Which sentence means 'This is a boy'?",
+        "options": [
+            "एषा बालिका",
+            "एतत् पुस्तकम्",
+            "एषः बालकः",
+            "अहम् बालकः अस्मि"
+        ],
+        "correct": 2
+    },
+    {
+        "question": "Which word is used for 'This (feminine)'?",
+        "options": [
+            "एषः",
+            "एषा",
+            "एतत्",
+            "अस्मि"
+        ],
+        "correct": 1
+    },
+    {
+        "question": "How do you say 'This is a book'?",
+        "options": [
+            "एषः पुस्तकम्",
+            "एषा पुस्तकम्",
+            "एतत् पुस्तकम्",
+            "अहम् पुस्तकम्"
+        ],
+        "correct": 2
+    },
+    {
+        "question": "How do you say 'I go'?",
+        "options": [
+            "अहम् गच्छामि",
+            "मम नाम गच्छामि",
+            "एषः गच्छामि",
+            "अहम् गच्छा अस्मि"
+        ],
+        "correct": 0
+    },
+    {
+        "question": "Which sentence follows Pattern 2 (My name is…)?",
+        "options": [
+            "अहम् विद्यार्थी अस्मि",
+            "मम नाम रामः अस्ति",
+            "एषः बालकः",
+            "अहम् पठामि"
+        ],
+        "correct": 1
+    },
+    {
+        "question": "Which pattern is used to describe actions?",
+        "options": [
+            "Pattern 1",
+            "Pattern 2",
+            "Pattern 3",
+            "Pattern 4"
+        ],
+        "correct": 3
+    },
+    {
+        "question": "What is the correct structure of Pattern 1 (I am…)?",
+        "options": [
+            "Mama + Nāma + Asti",
+            "Aham + Noun + Asmi",
+            "Eṣaḥ + Object",
+            "Aham + Nāma"
+        ],
+        "correct": 1
+    },
+    {
+        "question": "How do you say 'I read'?",
+        "options": [
+            "अहम् पठामि",
+            "मम नाम पठामि",
+            "एषः पठामि",
+            "पठामि अस्मि"
+        ],
+        "correct": 0
+    }
+]

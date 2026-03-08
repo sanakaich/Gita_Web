@@ -1,0 +1,102 @@
+[
+    {
+        "question": "How do you say 'Hello' in Sanskrit?",
+        "options": [
+            "सुप्रभातम्",
+            "नमस्ते",
+            "धन्यवादः",
+            "क्षम्यताम्"
+        ],
+        "correct": 1
+    },
+    {
+        "question": "How do you say 'Good Morning' in Sanskrit?",
+        "options": [
+            "सुभसंध्या",
+            "नमः",
+            "सुप्रभातम्",
+            "जानामि"
+        ],
+        "correct": 2
+    },
+    {
+        "question": "How do you say 'Good Evening' in Sanskrit?",
+        "options": [
+            "सुभसंध्या",
+            "सुप्रभातम्",
+            "भारतात्",
+            "पठामि"
+        ],
+        "correct": 0
+    },
+    {
+        "question": "How do you say 'My name is Rama'?",
+        "options": [
+            "अहं विद्यार्थी अस्मि",
+            "भवतः नाम किम्",
+            "मम नाम रामः अस्ति",
+            "अहं न जानामि"
+        ],
+        "correct": 2
+    },
+    {
+        "question": "How do you say 'I am a student'?",
+        "options": [
+            "अहं संस्कृतं पठामि",
+            "अहं विद्यार्थी अस्मि",
+            "मम नाम अस्ति",
+            "क्षम्यताम्"
+        ],
+        "correct": 1
+    },
+    {
+        "question": "How do you ask 'What is your name?'",
+        "options": [
+            "अहं भारतात् अस्मि",
+            "भवतः नाम किम्",
+            "धन्यवादः",
+            "अहं न जानामि"
+        ],
+        "correct": 1
+    },
+    {
+        "question": "How do you say 'I study Sanskrit'?",
+        "options": [
+            "अहं संस्कृतं पठामि",
+            "अहं विद्यार्थी अस्मि",
+            "सुभसंध्या",
+            "मम नाम अस्ति"
+        ],
+        "correct": 0
+    },
+    {
+        "question": "How do you say 'I am from India'?",
+        "options": [
+            "अहं न जानामि",
+            "अहं भारतात् अस्मि",
+            "सुप्रभातम्",
+            "धन्यवादः"
+        ],
+        "correct": 1
+    },
+    {
+        "question": "How do you say 'Thank you'?",
+        "options": [
+            "क्षम्यताम्",
+            "जानामि",
+            "धन्यवादः",
+            "नमस्ते"
+        ],
+        "correct": 2
+    },
+    {
+        "question": "How do you say 'I don't know'?",
+        "options": [
+            "अहं जानामि",
+            "अहं न जानामि",
+            "विद्यार्थी अस्मि",
+            "मम नाम अस्ति"
+        ],
+        "correct": 1
+    }
+]

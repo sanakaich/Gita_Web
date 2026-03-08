@@ -1,0 +1,15 @@
+Adding Context and Sentence Expansion in Sanskrit (Explanation)
+
+In this lesson, we learn how to make Sanskrit sentences more meaningful by adding context. Instead of speaking only very simple sentences, we can include information about place, number, action, and other details. This helps us express ideas more clearly and naturally in Sanskrit.
+
+First, we begin with a simple sentence that tells where we are. For example, the sentence “अहम् गृहे अस्मि” (Aham gṛhe asmi) means “I am at home.” In this sentence, अहम् (aham) means I, गृहे (gṛhe) means at home, and अस्मि (asmi) means am. By adding the word गृहे, we give context about the place where the person is.
+
+Next, we can describe what we are doing in a particular place. For example, “अहम् कक्षायाम् उपविशामि” (Aham kakṣāyām upaviśāmi) means “I am sitting in a room.” Here, कक्षायाम् (kakṣāyām) means in the room, and उपविशामि (upaviśāmi) means I sit or I am sitting. By including the location and action together, the sentence becomes more descriptive.
+
+We can also add numbers to give more information. For example, the sentence “अत्र त्रयः छात्राः सन्ति” (Atra trayaḥ chātrāḥ santi) means “There are three students here.” In this sentence, अत्र (atra) means here, त्रयः (trayaḥ) means three, छात्राः (chātrāḥ) means students, and सन्ति (santi) means are. By adding the number three, the sentence becomes more specific.
+
+Another way to add context is by describing actions. For example, we can say “अहम् लिखामि” which means I am writing, “अहम् शृणोमि” which means I am hearing, and “अहम् पठामि” which means I am reading. These verbs describe what action a person is performing.
+
+After understanding how to add context, we can learn about sentence expansion. Sentence expansion means starting with a simple sentence and gradually adding more details such as the object, place, time, or number. For instance, the basic sentence “अहम् पठामि” means “I read.” If we add an object, it becomes “अहम् पुस्तकम् पठामि”, meaning “I read a book.” When we add place, the sentence becomes “अहम् गृहे पुस्तकम् पठामि”, which means “I read a book at home.”
+
+We can expand the sentence even further by adding time. For example, “अहम् प्रातः पुस्तकम् पठामि” means “I read a book in the morning.” Finally, we can add even more detail, such as number. For instance, “अहम् दश पुस्तकम् पठामि” means “I read ten books.

@@ -117,7 +117,7 @@ export default function Navbar() {
             </button>
 
             <div
-              className={`absolute left-0 top-full mt-5 w-56 rounded-xl
+              className={`absolute left-0 top-full mt-5 w-64 rounded-xl
               bg-white/90 backdrop-blur-xl border border-[#E8E1D8]
               shadow-xl p-4 transition-all duration-300
               ${openMenu === "sanskrit"
@@ -125,14 +125,25 @@ export default function Navbar() {
                   : "opacity-0 translate-y-4 pointer-events-none"
                 }`}
             >
-              <NavLink to="/sanskrit/beginner" className="block py-2 text-sm hover:text-[#F39237]">
-                Beginner
+              <NavLink to="/sanskrit" onClick={() => setOpenMenu(null)}
+                className="block py-2 px-2 rounded-lg text-sm font-semibold text-[#F39237] hover:bg-[#FFF4E8] transition mb-1">
+                All Modules →
               </NavLink>
-              <NavLink to="/sanskrit/intermediate" className="block py-2 text-sm hover:text-[#F39237]">
-                Intermediate
-              </NavLink>
+              <div className="h-px bg-[#EDE8E0] mb-2" />
+              {[
+                { id: "1", label: "Day 1 — Basic Greetings" },
+                { id: "2", label: "Day 2 — Pronunciation" },
+                { id: "3", label: "Day 3 — Sentence Patterns" },
+                { id: "4", label: "Day 4 — Sentence Expansion" },
+              ].map(m => (
+                <NavLink key={m.id} to={`/sanskrit/module/${m.id}`} onClick={() => setOpenMenu(null)}
+                  className="block py-2 px-2 rounded-lg text-sm text-[#1B2654] hover:text-[#F39237] hover:bg-[#FFF4E8] transition">
+                  {m.label}
+                </NavLink>
+              ))}
             </div>
           </div>
+
 
           {/* Stories */}
           <div

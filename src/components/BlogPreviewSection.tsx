@@ -76,19 +76,16 @@ export default function BlogPreviewSection() {
                   to={`/blog/${blog.slug}`}
                   className="relative flex bg-[#F6EFE6] rounded-2xl overflow-hidden shadow-md h-[169px]"
                 >
-                  {/* Image Zoom */}
-                  <motion.div
-                    className="relative z-10 w-44 self-stretch overflow-hidden"
-                    whileHover={{ scale: 1.05 }}
-                  >
+                  {/* Image */}
+                  <div className="relative z-10 w-44 self-stretch overflow-hidden">
                     <motion.img
                       src={blog.coverImage}
                       alt={blog.title}
                       className="w-full h-full object-cover"
-                      whileHover={{ scale: 1.1 }}
-                      transition={{ duration: 0.4 }}
+                      whileHover={{ scale: 1.08 }}
+                      transition={{ duration: 0.45, ease: "easeOut" }}
                     />
-                  </motion.div>
+                  </div>
 
                   <div className="py-4 px-5 flex flex-col relative z-10">
                     <h3 className="text-lg font-serif font-semibold text-[#1B2654]">

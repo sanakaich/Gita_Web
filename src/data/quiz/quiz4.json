@@ -1,0 +1,102 @@
+[
+    {
+        "question": "How do you say 'I am at home'?",
+        "options": [
+            "अहम् गृहे अस्मि",
+            "अहम् गृहे पठामि",
+            "अत्र गृहे अस्मि",
+            "गृहे सन्ति"
+        ],
+        "correct": 0
+    },
+    {
+        "question": "What does 'अत्र त्रयः छात्राः सन्ति' mean?",
+        "options": [
+            "Three students go",
+            "There are three students here",
+            "I am three students",
+            "Three teachers are here"
+        ],
+        "correct": 1
+    },
+    {
+        "question": "Which word means 'in the room'?",
+        "options": [
+            "गृहे",
+            "कक्षायाम्",
+            "अत्र",
+            "सन्ति"
+        ],
+        "correct": 1
+    },
+    {
+        "question": "How do you say 'I am reading'?",
+        "options": [
+            "अहम् शृणोमि",
+            "अहम् पठामि",
+            "अहम् गच्छामि",
+            "अहम् सन्ति"
+        ],
+        "correct": 1
+    },
+    {
+        "question": "Which sentence shows expansion with an object?",
+        "options": [
+            "अहम् पठामि",
+            "अहम् पुस्तकम् पठामि",
+            "अत्र छात्राः",
+            "गृहे अस्मि"
+        ],
+        "correct": 1
+    },
+    {
+        "question": "Which word means 'here'?",
+        "options": [
+            "अत्र",
+            "गृहे",
+            "कक्षायाम्",
+            "दश"
+        ],
+        "correct": 0
+    },
+    {
+        "question": "Which sentence includes place information?",
+        "options": [
+            "अहम् पठामि",
+            "अहम् पुस्तकम् पठामि",
+            "अहम् गृहे पुस्तकम् पठामि",
+            "अहम् दश पठामि"
+        ],
+        "correct": 2
+    },
+    {
+        "question": "Which word indicates time in sentence expansion?",
+        "options": [
+            "पुस्तकम्",
+            "गृहे",
+            "प्रातः",
+            "छात्राः"
+        ],
+        "correct": 2
+    },
+    {
+        "question": "What does 'अहम् लिखामि' mean?",
+        "options": [
+            "I read",
+            "I write",
+            "I sit",
+            "I go"
+        ],
+        "correct": 1
+    },
+    {
+        "question": "What is sentence expansion?",
+        "options": [
+            "Removing words",
+            "Translating words",
+            "Adding context and details to a basic sentence",
+            "Changing verb form"
+        ],
+        "correct": 2
+    }
+]
