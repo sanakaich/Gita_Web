@@ -156,7 +156,7 @@ export default function Navbar() {
             </button>
 
             <div
-              className={`absolute left-0 top-full mt-5 w-60 rounded-xl
+              className={`absolute left-0 top-full mt-5 w-64 rounded-xl
               bg-white/90 backdrop-blur-xl border border-[#E8E1D8]
               shadow-xl p-4 transition-all duration-300
               ${openMenu === "stories"
@@ -164,17 +164,26 @@ export default function Navbar() {
                   : "opacity-0 translate-y-4 pointer-events-none"
                 }`}
             >
-              <NavLink to="/stories/krishna" className="block py-2 text-sm hover:text-[#F39237]">
-                Krishna Stories
+              <NavLink to="/stories" onClick={() => setOpenMenu(null)}
+                className="block py-2 px-2 rounded-lg text-sm font-semibold text-[#F39237] hover:bg-[#FFF4E8] transition mb-1">
+                All Stories →
               </NavLink>
-              <NavLink to="/stories/rama" className="block py-2 text-sm hover:text-[#F39237]">
-                Ramayana Tales
+              <div className="h-px bg-[#EDE8E0] mb-2" />
+              <NavLink to="/stories/krishna" onClick={() => setOpenMenu(null)}
+                className="block py-2 px-2 rounded-lg text-sm text-[#1B2654] hover:text-[#F39237] hover:bg-[#FFF4E8] transition">
+                🔵 Krishna & Govardhan
               </NavLink>
-              <NavLink to="/stories/hanuman" className="block py-2 text-sm hover:text-[#F39237]">
-                Hanuman Legends
+              <NavLink to="/stories/rama" onClick={() => setOpenMenu(null)}
+                className="block py-2 px-2 rounded-lg text-sm text-[#1B2654] hover:text-[#F39237] hover:bg-[#FFF4E8] transition">
+                🟡 Rama's Bridge to Lanka
+              </NavLink>
+              <NavLink to="/stories/hanuman" onClick={() => setOpenMenu(null)}
+                className="block py-2 px-2 rounded-lg text-sm text-[#1B2654] hover:text-[#F39237] hover:bg-[#FFF4E8] transition">
+                🟠 Hanuman's Leap to Lanka
               </NavLink>
             </div>
           </div>
+
 
           <NavLink to="/blog" className={`${linkBase} ${underline}`}>
             Blog

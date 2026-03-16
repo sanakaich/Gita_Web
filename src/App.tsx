@@ -9,6 +9,8 @@ import GitaRedirect from "./pages/Gita";
 import GitaChapterPage from "./pages/GitaChapterPage";
 import SanskritLanding from "./pages/SanskritLanding";
 import SanskritModulePage from "./pages/SanskritModulePage";
+import StoriesLanding from "./pages/StoriesLanding";
+import StoryDetailPage from "./pages/StoryDetailPage";
 import BlogPage from "./pages/Blog";
 import BlogPostPage from "./pages/BlogPost";
 import NotFound from "./pages/NotFound";
@@ -38,6 +40,10 @@ const App = () => (
           {/* Sanskrit Learning */}
           <Route path="/sanskrit" element={<SanskritLanding />} />
           <Route path="/sanskrit/module/:id" element={<SanskritModulePage />} />
+
+          {/* Mythological Stories */}
+          <Route path="/stories" element={<StoriesLanding />} />
+          <Route path="/stories/:slug" element={<StoryDetailPage />} />
 
           {/* Blog */}
           <Route path="/blog" element={<BlogPage />} />
