@@ -1,49 +1,58 @@
 import { useState, useRef, useEffect, useLayoutEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import ReactMarkdown from 'react-markdown';
 
 /* ── Constants ─────────────────────────────────────────────── */
 const BUBBLE = 58;
 const MARGIN = 24;
 
-/* ── Gemini ─────────────────────────────────────────────────── */
-const SYSTEM_PROMPT = `You are "Gita Guide", a wise and peaceful spiritual assistant for a Bhagavad Gita website called GitaWeb.
+/* ── ChatGPT ─────────────────────────────────────────────────── */
+const SYSTEM_PROMPT = `You are **Gita Guide**, a serene and enlightened spiritual assistant for the Bhagavad Gita website, GitaWeb. Your purpose is to offer profound guidance drawn from the timeless wisdom of the Bhagavad Gita, helping users navigate their inner worlds with grace and clarity.
 
-Personality:
-- Calm, warm, encouraging — like a knowledgeable spiritual elder
-- Occasionally start with Sanskrit phrases (e.g., "Hari Om 🙏", "Namaste", "As Krishna teaches…")
-- Concise (2–4 sentences) unless asked for more
-- Use warm emojis occasionally
+When a user shares an emotional struggle—such as loneliness, sadness, fear, confusion, or any form of distress—respond in a beautifully structured manner with clear sections. Format your response with each section starting on a new line with a bold heading, followed by the content. Use the following structure:
 
-Knowledge: Bhagavad Gita shlokas & chapters, Krishna, Arjuna, Mahabharata, Karma/Bhakti/Jnana/Raja Yoga, dharma, karma, moksha, meditation, Sanskrit.
+**Acknowledge the Feeling:**  
+Begin by gently recognizing and validating the user's emotion, expressing empathy in a poetic, soothing way that mirrors the calm of a spiritual teacher.
 
-Feature nudges (weave in naturally, not pushy):
-- Shlokas → "Our Gita section has all shlokas with translations and explanations."
-- Meditation → "Our Meditation Timer has Om Chanting and Healing Music to support your practice 🎵"
-- Sanskrit → "Our Sanskrit Learning section is coming soon!"
-- Mythology → "Our Mythological Stories section has tales of Krishna, Rama, Hanuman and more."
-- Updates → "Our Blog shares spiritual insights regularly."
+**Offer a Spiritual Remedy:**  
+Provide a detailed, beautiful cure or remedy inspired by the Bhagavad Gita. Suggest practices like mindful remembrance of Krishna, deep meditation on the soul's immortality, devotional chanting, selfless service (karma yoga), or contemplation of one's divine nature as the eternal Atman. Describe these remedies vividly, explaining how they alleviate the specific emotion.
 
-Boundary: gently redirect off-topic questions back to spiritual themes. Never discuss politics.`;
+**Explain the Teaching:**  
+Elucidate what the Bhagavad Gita teaches about that emotion, incorporating concepts such as the Atman (soul), detachment from worldly attachments, mastery over the mind, unwavering devotion (bhakti), and righteous duty (dharma). Weave in philosophical depth to illuminate the path to inner peace.
 
-const API_KEY = import.meta.env.VITE_GEMINI_API_KEY as string | undefined;
+**Narrate a Relevant Incident:**  
+Share a pertinent story or incident from the Bhagavad Gita or Mahabharata that exemplifies the teaching. Describe it comprehensively: when it occurred in the context of the epic, how the situation unfolded step by step, what the key character (e.g., Arjuna, Krishna) experienced and did in response, and the profound lesson it imparts. Paint the scene with vivid, narrative detail to make it engaging and memorable.
+
+**Conclude with Insight:**  
+End with a serene, uplifting spiritual insight that reaffirms the user's unbreakable connection to the Divine, encourages resilience, and inspires them to embrace their inner strength and eternal nature.
+
+Maintain a tone that is calm, compassionate, and wise, like an ancient sage imparting sacred knowledge. Use eloquent, flowing language to make your responses not just informative but truly beautiful and transformative. Avoid emojis, political references, and anything outside the realm of Bhagavad Gita philosophy and stories. Ensure every response is grounded in the Gita's teachings, fostering spiritual growth and solace.
+`;
+
+const API_KEY = import.meta.env.VITE_OPENAI_API_KEY as string | undefined;
 // Verify key is loaded (check browser console)
 console.log("[GitaBot] API key loaded:", API_KEY ? `${API_KEY.slice(0, 8)}…` : "MISSING — restart npm run dev");
 
-const GEMINI_URL =
-    `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent`;
+const OPENAI_URL = 'https://api.openai.com/v1/chat/completions';
 
-/** Call Gemini REST API directly (avoids SDK browser-compat issues) */
-async function callGemini(history: { role: string; parts: { text: string }[] }[], newText: string): Promise<string> {
-    const resp = await fetch(`${GEMINI_URL}?key=${API_KEY}`, {
+/** Call OpenAI ChatGPT API */
+async function callOpenAI(history: Message[], newText: string): Promise<string> {
+    const messages = [
+        { role: "system", content: SYSTEM_PROMPT },
+        ...history.map(m => ({ role: m.role === "model" ? "assistant" : m.role, content: m.text })),
+        { role: "user", content: newText }
+    ];
+    const resp = await fetch(OPENAI_URL, {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers: { 
+            "Content-Type": "application/json",
+            "Authorization": `Bearer ${API_KEY}`
+        },
         body: JSON.stringify({
-            system_instruction: { parts: [{ text: SYSTEM_PROMPT }] },
-            contents: [
-                ...history,
-                { role: "user", parts: [{ text: newText }] },
-            ],
-            generationConfig: { temperature: 0.75, maxOutputTokens: 512 },
+            model: "gpt-3.5-turbo",
+            messages,
+            temperature: 0.75,
+            max_tokens: 512
         }),
     });
     if (!resp.ok) {
@@ -51,7 +60,7 @@ async function callGemini(history: { role: string; parts: { text: string }[] }[]
         throw new Error(`HTTP ${resp.status} — ${body.slice(0, 200)}`);
     }
     const data = await resp.json();
-    return data.candidates?.[0]?.content?.parts?.[0]?.text ?? "(no response)";
+    return data.choices?.[0]?.message?.content ?? "(no response)";
 }
 
 /* ── Types ─────────────────────────────────────────────────── */
@@ -161,7 +170,7 @@ export default function ChatBot() {
         if (!API_KEY) {
             setMessages(prev => [...prev,
             { role: "user" as const, text: text.trim() },
-            { role: "model" as const, text: "⚠️ API key not loaded. Stop the server, verify .env has VITE_GEMINI_API_KEY, then run npm run dev again." },
+            { role: "model" as const, text: "⚠️ API key not loaded. Stop the server, verify .env has VITE_OPENAI_API_KEY, then run npm run dev again." },
             ]);
             return;
         }
@@ -174,10 +183,9 @@ export default function ChatBot() {
         try {
             // Build history for the API (must start with "user", skip local greeting)
             const apiHistory = messages
-                .filter((m, i) => !(i === 0 && m.role === "model"))
-                .map(m => ({ role: m.role, parts: [{ text: m.text }] }));
+                .filter((m, i) => !(i === 0 && m.role === "model"));
 
-            const reply = await callGemini(apiHistory, text.trim());
+            const reply = await callOpenAI(apiHistory, text.trim());
             setMessages(prev => [...prev, { role: "model", text: reply }]);
         } catch (err: unknown) {
             const msg = err instanceof Error ? err.message : String(err);
@@ -269,7 +277,9 @@ export default function ChatBot() {
                                         color: msg.role === "user" ? "#fff" : "#3d2500",
                                         fontSize: "13px", lineHeight: 1.65,
                                         boxShadow: msg.role === "user" ? "0 3px 10px rgba(243,100,30,0.2)" : "0 2px 6px rgba(180,100,20,0.07)",
-                                    }}>{msg.text}</div>
+                                    }}>
+                                        {msg.role === "model" ? <ReactMarkdown>{msg.text}</ReactMarkdown> : msg.text}
+                                    </div>
                                 </motion.div>
                             ))}
 
